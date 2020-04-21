@@ -1,16 +1,16 @@
 import ActionResultVoid from "../model/action_result_void";
 
-import FootballPersistence from "../persistence/football_persistence";
-import FootballConverter from "../model/converters/football_converter";
+import HitterPersistence from "../persistence/hitter_persistence";
+import HitterConverter from "../model/converters/hitter_converter";
 import { DatabaseDocument } from "../persistence/persisted_object";
 
 
-export class FootballService {
+export class HitterService {
     constructor () {
 
     }
     
-    static sharedInstance = new FootballService(); 
+    static sharedInstance = new HitterService(); 
 
     static instance() {
         return this.sharedInstance;
