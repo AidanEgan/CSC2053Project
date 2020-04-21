@@ -5,7 +5,7 @@ import { DatabaseDocument } from '../persistence/persisted_object';
 
 type OnUpdateCallBack<T> = (data: T[]) => void;
 type VoidCallback = () => void;
-export default class QueueListener<T> {
+export default class Listener<T> {
   private converter: Converter<T>;
   public onAllUpdates: OnUpdateCallBack<T> | null;
 

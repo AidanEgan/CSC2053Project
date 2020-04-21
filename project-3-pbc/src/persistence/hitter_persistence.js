@@ -8,10 +8,10 @@ import { DatabaseDocument } from "./persisted_object";
 import ActionResult from "../model/action_result";
 import ActionResultVoid from "../model/action_result_void";
 
-export default class BasketballPersistence {
+export default class HitterPersistence {
     constructor () {}
 
-    static sharedInstance = new BasketballPersistence(); 
+    static sharedInstance = new HitterPersistence(); 
 
     instance() {
         return this.sharedInstance; 
@@ -20,7 +20,7 @@ export default class BasketballPersistence {
     getHitterSubscriptionGenerator () {
         return (onStreamUpdate ) => {
             return {
-                unsubscribe: firebaseApp.firestore().collection("Basketball")
+                unsubscribe: firebaseApp.firestore().collection("Hitters")
                     .onSnapshot((snapshot) => {
                         onStreamUpdate(toQueueDatatbaseDocList(snapshot));
                     }, (error) => {

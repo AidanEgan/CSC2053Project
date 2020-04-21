@@ -1,0 +1,15 @@
+export default interface Pitcher {
+    id: string, 
+    atBats: number, 
+    cs: number, 
+    erp: number, 
+    gidp: number, 
+    h: number, 
+    hbp: number, 
+    playerID: string, 
+    playerName: string, 
+    sb: number, 
+    slug: number, 
+    tb: number, 
+    walks: number, 
+}

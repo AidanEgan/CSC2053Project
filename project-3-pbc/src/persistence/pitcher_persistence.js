@@ -8,19 +8,19 @@ import { DatabaseDocument } from "./persisted_object";
 import ActionResult from "../model/action_result";
 import ActionResultVoid from "../model/action_result_void";
 
-export default class BasketballPersistence {
+export default class PitcherPersistence {
     constructor () {}
 
-    static sharedInstance = new BasketballPersistence(); 
+    static sharedInstance = new PitcherPersistence(); 
 
     instance() {
         return this.sharedInstance; 
     }
 
-    getHitterSubscriptionGenerator () {
+    getPitcherSubscriptionGenerator () {
         return (onStreamUpdate ) => {
             return {
-                unsubscribe: firebaseApp.firestore().collection("Basketball")
+                unsubscribe: firebaseApp.firestore().collection("Pitchers")
                     .onSnapshot((snapshot) => {
                         onStreamUpdate(toQueueDatatbaseDocList(snapshot));
                     }, (error) => {
