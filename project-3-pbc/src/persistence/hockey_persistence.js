@@ -3,18 +3,18 @@ import "firebase/auth";
 import "firebase/firestore";
 import {firebaseApp} from './firebase_app';
 import { OnStreamUpdate, SubscriptionGenerator, Unsubscriber } from "./subscription_generator";
+import {toDatabaseDocList} from "./persistence.utls";
 import { DatabaseDocument } from "./persisted_object";
 import ActionResult from "../model/action_result";
 import ActionResultVoid from "../model/action_result_void";
-import {toDatabaseDocList} from "./persistence.utls";
 
 export default class HockeyPersistence {
     constructor () {}
 
-    static sharedInstance = new HockeyPersistence(); 
+    static sharedInstance = new HockeyPersistence();
 
-    instance() {
-        return this.sharedInstance; 
+    static instance() {
+        return this.sharedInstance;
     }
 
     getHockeySubscriptionGenerator () {
