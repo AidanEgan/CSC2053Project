@@ -1,5 +1,6 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, AppBar, Toolbar } from "@material-ui/core";
+import {Link} from "react-router-dom";
  
 
 export default class ProjectNavbar extends React.Component {
@@ -12,22 +13,24 @@ export default class ProjectNavbar extends React.Component {
 
     render () {
         return (
-            <React.Fragment>
-                <Grid container direction="row" justify="space-around" alignItems="center">
-                    <Grid item>
-                        <a href=''>About</a>
+            <AppBar position='static' color='secondary'>
+                <Toolbar>
+                    <Grid container direction="row" justify="space-around" alignItems="center">
+                        <Grid item>
+                            <Link to='/'>About</Link>
+                        </Grid>
+                        <Grid item>
+                            <Link to='/basketball'>Basketball Page</Link>
+                        </Grid>
+                        <Grid item>
+                            <Link to='/baseball'>Baseball Page</Link>
+                        </Grid>
+                        <Grid item>
+                            <Link to='/hockey'>Hockey Page</Link>
+                        </Grid>
                     </Grid>
-                    <Grid item>
-                        <a href=''>Basketball Page</a>
-                    </Grid>
-                    <Grid item>
-                        <a href=''>Hockey Page</a>
-                    </Grid>
-                    <Grid item>
-                        <a href=''>Baseball Page</a>
-                    </Grid>
-                </Grid>
-            </React.Fragment>
+                </Toolbar>
+            </AppBar>
         );
     }
 }

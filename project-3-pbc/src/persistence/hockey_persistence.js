@@ -3,26 +3,26 @@ import "firebase/auth";
 import "firebase/firestore";
 import {firebaseApp} from './firebase_app';
 import { OnStreamUpdate, SubscriptionGenerator, Unsubscriber } from "./subscription_generator";
-import { toQueueDatatbaseDocList, toQueueDatatbaseDoc } from "./persistence_utls";
 import { DatabaseDocument } from "./persisted_object";
 import ActionResult from "../model/action_result";
 import ActionResultVoid from "../model/action_result_void";
+import {toDatabaseDocList} from "./persistence.utls";
 
-export default class FootballPersistence {
+export default class HockeyPersistence {
     constructor () {}
 
-    static sharedInstance = new FootballPersistence(); 
+    static sharedInstance = new HockeyPersistence(); 
 
     instance() {
         return this.sharedInstance; 
     }
 
-    getFootballSubscriptionGenerator () {
+    getHockeySubscriptionGenerator () {
         return (onStreamUpdate ) => {
             return {
-                unsubscribe: firebaseApp.firestore().collection("Football")
+                unsubscribe: firebaseApp.firestore().collection("Hockey")
                     .onSnapshot((snapshot) => {
-                        onStreamUpdate(toQueueDatatbaseDocList(snapshot));
+                        onStreamUpdate(toDatabaseDocList(snapshot));
                     }, (error) => {
                         onStreamUpdate([]);
                     }),

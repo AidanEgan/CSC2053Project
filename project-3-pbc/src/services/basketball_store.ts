@@ -6,33 +6,40 @@ import BasketballPersistence from "../persistence/basketball_persistence";
 
 
 
-export default class BasketballStore extends Store { 
+
+export default class BasketballStore extends Store<BasketballPlayer> { 
     constructor () {
         super (new BasketballConverter());
 
         this.getPlayers = this.getPlayers.bind(this);
     }
 
-    basketballCache = [];
+    static sharedInstance: BasketballStore = new BasketballStore();
 
-    getStoreSize () {
-        return this.basketballCache.length;
+    public static instance() {
+        return this.sharedInstance; 
     }
 
-    isLoaded() {
+    private basketballCache?: BasketballPlayer[];
+
+    public getStoreSize () {
+        return this.basketballCache!.length;
+    }
+
+    public isLoaded() {
         return this.basketballCache !== undefined;
     }
 
-    updateCache (players) {
+    public updateCache (players: BasketballPlayer[]) {
         this.basketballCache = players;
     }
 
-    getPlayers() {
+    public getPlayers() {
         return this.basketballCache;
     }
 
-    static getBasketballListenerClient() {
-        return new ListenerClient(
+    public static getBasketballListenerClient(): ListenerClient<BasketballStore> {
+        return new ListenerClient<BasketballStore>(
             new BasketballStore(),  
             BasketballPersistence.instance().getBasketballSubscriptionGenerator()
         );
