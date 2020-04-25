@@ -13,6 +13,18 @@ export default class HitterStore extends Store {
         this.getPlayers = this.getPlayers.bind(this);
     }
 
+    static sharedInstance = new HitterStore();
+
+    instance() {
+        return this.sharedInstance; 
+    }
+
+    static sharedInstance = new HitterStore();
+
+    instance() {
+        return this.sharedInstance; 
+    }
+
     hitterCache = [];
 
     getStoreSize () {

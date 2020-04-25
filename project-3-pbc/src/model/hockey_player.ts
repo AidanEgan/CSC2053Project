@@ -1,4 +1,4 @@
-export default interface FootballPlayer {
+export default interface HockeyPlayer {
     playerName: string, 
     teamName: string, 
 }

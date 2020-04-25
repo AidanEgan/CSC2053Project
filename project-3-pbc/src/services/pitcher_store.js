@@ -13,6 +13,12 @@ export default class PitcherStore extends Store {
         this.getPlayers = this.getPlayers.bind(this);
     }
 
+    static sharedInstance = new PitcherStore();
+
+    instance() {
+        return this.sharedInstance; 
+    }
+
     pitcherCache = [];
 
     getStoreSize () {
