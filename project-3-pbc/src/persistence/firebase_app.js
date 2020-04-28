@@ -1,4 +1,4 @@
-import * as firebase from "firebase/app"; 
+import * as firebase from "firebase/app";
 
 var firebaseConfig = {
     apiKey: "AIzaSyAnTfB1FNxRPRrBDRUuE0ATZYBGTTlEKnM",
@@ -11,4 +11,5 @@ var firebaseConfig = {
     measurementId: "G-X3BQ1MMP87"
   };
 
-  export var firebaseApp = firebase.initializeApp(firebaseConfig); 
+
+  export var firebaseApp = firebase.initializeApp(firebaseConfig);
