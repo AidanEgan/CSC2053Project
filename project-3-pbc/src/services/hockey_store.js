@@ -15,7 +15,7 @@ export default class HockeyStore extends Store {
 
     static sharedInstance = new HockeyStore();
 
-    instance() {
+    static instance() {
         return this.sharedInstance; 
     }
 
