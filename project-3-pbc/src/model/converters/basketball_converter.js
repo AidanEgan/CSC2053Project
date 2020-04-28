@@ -10,6 +10,22 @@ export default class BasketballConverter extends Converter {
             id: id,
             playerName: data["playerName"], 
             teamName: data["teamName"], 
+            age: data["age"],
+            bpm : data["bpm"],
+            dbpm : data["dbpm"],
+            dws : data["dws"],
+            g : data["g"],
+            mp : data["mp"],
+            obpm : data["obpm"],
+            ows : data["ows"],
+            per : data["per"],
+            pos : data["pos"],
+            rk : data["rk"],
+            tspercent: data["tspercent"],
+            usgpercent : data["usgpercent"],
+            vorp : data["vorp"],
+            ws : data["ws"],
+            ws_48: data["ws_48"],
         } 
         return toReturn;
     }

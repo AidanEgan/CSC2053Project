@@ -15,7 +15,7 @@ export default class PitcherStore extends Store {
 
     static sharedInstance = new PitcherStore();
 
-    instance() {
+    static instance() {
         return this.sharedInstance; 
     }
 

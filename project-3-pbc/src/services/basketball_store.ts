@@ -40,7 +40,7 @@ export default class BasketballStore extends Store<BasketballPlayer> {
 
     public static getBasketballListenerClient(): ListenerClient<BasketballStore> {
         return new ListenerClient<BasketballStore>(
-            new BasketballStore(),  
+            BasketballStore.instance(),
             BasketballPersistence.instance().getBasketballSubscriptionGenerator()
         );
     }

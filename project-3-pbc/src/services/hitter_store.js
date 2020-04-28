@@ -15,13 +15,7 @@ export default class HitterStore extends Store {
 
     static sharedInstance = new HitterStore();
 
-    instance() {
-        return this.sharedInstance; 
-    }
-
-    static sharedInstance = new HitterStore();
-
-    instance() {
+    static instance() {
         return this.sharedInstance; 
     }
 
