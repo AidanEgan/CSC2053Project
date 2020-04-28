@@ -20,7 +20,7 @@ export default class HockeyPersistence {
     getHockeySubscriptionGenerator () {
         return (onStreamUpdate ) => {
             return {
-                unsubscribe: firebaseApp.firestore().collection("Hockey")
+                unsubscribe: firebaseApp.firestore().collection("hockey_players")
                     .onSnapshot((snapshot) => {
                         onStreamUpdate(toDatabaseDocList(snapshot));
                     }, (error) => {

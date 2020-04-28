@@ -40,7 +40,7 @@ export default class HockeyStore extends Store<HockeyPlayer> {
 
     public static getHockeyListenerClient(): ListenerClient<HockeyStore> {
         return new ListenerClient<HockeyStore>(
-            new HockeyStore(),
+            HockeyStore.instance(),
             HockeyPersistence.instance().getHockeySubscriptionGenerator()
         );
     }
