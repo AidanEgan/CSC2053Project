@@ -20,8 +20,9 @@ export default class BasketballPersistence {
     getBasketballSubscriptionGenerator () {
         return (onStreamUpdate ) => {
             return {
-                unsubscribe: firebaseApp.firestore().collection("Basketball")
+                unsubscribe: firebaseApp.firestore().collection("basketball_players1")
                     .onSnapshot((snapshot) => {
+                        console.log("we received docs from firestore");
                         onStreamUpdate(toDatabaseDocList(snapshot));
                     }, (error) => {
                         onStreamUpdate([]);
