@@ -1,6 +1,6 @@
 import HockeyPlayer from "../model/hockey_player";
 import Store from "./store";
-import HockeyConverter from "../model/converters/football_converter";
+import HockeyConverter from "../model/converters/hockey_converter";
 import ListenerClient from "./listener_client";
 import HockeyPersistence from "../persistence/hockey_persistence";
 

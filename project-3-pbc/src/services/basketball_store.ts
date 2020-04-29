@@ -8,7 +8,7 @@ import BasketballPersistence from "../persistence/basketball_persistence";
 
 
 export default class BasketballStore extends Store<BasketballPlayer> { 
-    constructor () {
+    private constructor () {
         super (new BasketballConverter());
 
         this.getPlayers = this.getPlayers.bind(this);
@@ -35,7 +35,7 @@ export default class BasketballStore extends Store<BasketballPlayer> {
     }
 
     public getPlayers() {
-        return this.basketballCache;
+        return this.basketballCache!;
     }
 
     public static getBasketballListenerClient(): ListenerClient<BasketballStore> {

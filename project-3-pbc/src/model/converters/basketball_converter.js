@@ -8,8 +8,8 @@ export default class BasketballConverter extends Converter {
         let id = doc.id; 
         let toReturn = {
             id: id,
-            playerName: data["playerName"], 
-            teamName: data["teamName"], 
+            playerName: data["player"], 
+            teamName: data["tm"], 
             age: data["age"],
             bpm : data["bpm"],
             dbpm : data["dbpm"],

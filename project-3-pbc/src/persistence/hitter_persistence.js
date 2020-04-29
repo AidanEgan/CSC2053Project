@@ -6,21 +6,21 @@ import { OnStreamUpdate, SubscriptionGenerator, Unsubscriber } from "./subscript
 import { DatabaseDocument } from "./persisted_object";
 import ActionResult from "../model/action_result";
 import ActionResultVoid from "../model/action_result_void";
-import {toDatatbaseDocList} from "./persistence.utls";
+import {toDatabaseDocList} from "./persistence.utls";
 
 export default class HitterPersistence {
     constructor () {}
 
     static sharedInstance = new HitterPersistence(); 
 
-    instance() {
+    static instance() {
         return this.sharedInstance; 
     }
 
     getHitterSubscriptionGenerator () {
         return (onStreamUpdate ) => {
             return {
-                unsubscribe: firebaseApp.firestore().collection("Hitters")
+                unsubscribe: firebaseApp.firestore().collection("baseball_hitters")
                     .onSnapshot((snapshot) => {
                         onStreamUpdate(toDatabaseDocList(snapshot));
                     }, (error) => {

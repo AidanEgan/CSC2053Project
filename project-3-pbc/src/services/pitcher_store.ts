@@ -6,40 +6,40 @@ import PitcherPersistence from "../persistence/pitcher_persistence";
 
 
 
-export default class PitcherStore extends Store { 
-    constructor () {
+export default class PitcherStore extends Store<Pitcher> { 
+    private constructor () {
         super (new PitcherConverter());
 
         this.getPlayers = this.getPlayers.bind(this);
     }
 
-    static sharedInstance = new PitcherStore();
+    static sharedInstance: PitcherStore = new PitcherStore();
 
-    static instance() {
+    public static instance() {
         return this.sharedInstance; 
     }
 
-    pitcherCache = [];
+    private pitcherCache?: Pitcher[];
 
     getStoreSize () {
-        return this.pitcherCache.length;
+        return this.pitcherCache!.length;
     }
 
     isLoaded() {
         return this.pitcherCache !== undefined;
     }
 
-    updateCache (players) {
+    updateCache (players: Pitcher[]) {
         this.pitcherCache = players;
     }
 
     getPlayers() {
-        return this.pitcherCache;
+        return this.pitcherCache!;
     }
 
     static getPitcherListenerClient() {
-        return new PitcherClient(
-            new PitcherStore(),  
+        return new ListenerClient(
+            PitcherStore.instance(),  
             PitcherPersistence.instance().getPitcherSubscriptionGenerator()
         );
     }
