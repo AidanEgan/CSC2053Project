@@ -47,7 +47,9 @@ export default class BasketballPage extends ListenerComponent<{}, BasketballPage
     renderTable() {
         if (!BasketballStore.instance().isLoaded()) {
             return (
+              <div style={{display: 'flex', justifyContent: 'center', margin: '5%'}}>
                 <CircularProgress/>
+              </div>
             );
         }
         let players: BasketballPlayer[] = BasketballStore.instance().getPlayers()!;

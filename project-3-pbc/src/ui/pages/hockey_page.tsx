@@ -47,7 +47,9 @@ export default class HockeyPage extends ListenerComponent<{}, HockeyPageState>  
     renderTable() {
         if (!HockeyStore.instance().isLoaded()) {
             return (
+              <div style={{display: 'flex', justifyContent: 'center', margin: '5%'}}>
                 <CircularProgress/>
+              </div>
             );
         }
         let players: HockeyPlayer[] = HockeyStore.instance().getPlayers()!;
