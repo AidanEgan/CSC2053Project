@@ -6,13 +6,13 @@ import ListenerComponent from "../components/listener_component";
 import BasketballPlayer from '../../model/basketball_player';
 
 interface BasketballPageState {
-    shouldDisplayDialog: boolean, 
+    shouldDisplayDialog: boolean,
     expandedPlayer?: BasketballPlayer,
     salary?: number, 
 }
 
 export default class BasketballPage extends ListenerComponent<{}, BasketballPageState>  {
-    private salaryCap: string = ""; 
+    private salaryCap: string = "";
     constructor (props: {}) {
         super (props);
         this.state = {
@@ -63,21 +63,23 @@ export default class BasketballPage extends ListenerComponent<{}, BasketballPage
             </React.Fragment>
         );
     }
-    
-    renderTableBody () {
+
+    renderTableBody() {
         if (!BasketballStore.instance().isLoaded()) {
             return (
+              <div style={{display: 'flex', justifyContent: 'center', margin: '5%'}}>
                 <CircularProgress/>
+              </div>
             );
         }
         let players: BasketballPlayer[] = BasketballStore.instance().getPlayers()!; 
         return (players.map((player) => {
             return (
-                <TableRow key={player.playerName}>
+                <TableRow key={player.player}>
                     <TableCell><a onClick={() => {
                         this.setState({shouldDisplayDialog: true, expandedPlayer: player,})
-                    }}>{player.playerName}</a></TableCell>
-                    <TableCell>{player.teamName}</TableCell>
+                    }}>{player.player}</a></TableCell>
+                    <TableCell>{player.tm}</TableCell>
                     <TableCell>{player.pos}</TableCell>
                     <TableCell>{player.tspercent}</TableCell>
                     <TableCell>{player.per}</TableCell>
@@ -110,10 +112,10 @@ export default class BasketballPage extends ListenerComponent<{}, BasketballPage
                 <CircularProgress></CircularProgress>
             )
         }
-        let player = this.state.expandedPlayer!; 
+        let player = this.state.expandedPlayer!;
         return (
             <React.Fragment>
-                <DialogTitle>{player.playerName}</DialogTitle>
+                <DialogTitle>{player.player}</DialogTitle>
                 <DialogContent>
                     <DialogContentText>Please input a team's salary cap to display how much he should be getting payed based on his statistics.</DialogContentText>
                     <TextField placeholder='Salary Cap' value={this.salaryCap} onChange={this.onSalaryCapUpdated}>{this.salaryCap}</TextField>
