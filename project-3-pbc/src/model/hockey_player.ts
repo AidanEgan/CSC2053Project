@@ -1,4 +1,14 @@
 export default interface HockeyPlayer {
-    playerName: string, 
-    teamName: string, 
+  id: string,
+  Player: string,
+  Tm: string,
+  Age: string,
+  Pos : string,
+  GP : string,
+  G : string,
+  A : string,
+  PTS : string,
+  Epm : string,
+  aWS : string,
+  aPS : string,
 }

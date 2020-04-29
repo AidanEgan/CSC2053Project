@@ -1,16 +1,16 @@
 import React from 'react';
 import {Table, Button, DialogTitle, TextField, TableBody, TableHead, TableRow, TableCell, CircularProgress, Dialog, DialogContent, DialogContentText, DialogActions} from "@material-ui/core";
 import ProjectNavbar from "../components/project_navbar";
-import BasketballStore from "../../services/basketball_store";
+import HockeyStore from "../../services/hockey_store";
 import ListenerComponent from "../components/listener_component";
-import BasketballPlayer from '../../model/basketball_player';
+import HockeyPlayer from '../../model/hockey_player';
 
-interface BasketballPageState {
+interface HockeyPageState {
     shouldDisplayDialog: boolean,
-    expandedPlayer?: BasketballPlayer,
+    expandedPlayer?: HockeyPlayer,
 }
 
-export default class BasketballPage extends ListenerComponent<{}, BasketballPageState>  {
+export default class HockeyPage extends ListenerComponent<{}, HockeyPageState>  {
     private salaryCap: string = "";
     constructor (props: {}) {
         super (props);
@@ -23,11 +23,11 @@ export default class BasketballPage extends ListenerComponent<{}, BasketballPage
     }
 
     getEmployedListenerClients () {
-        return [BasketballStore.getBasketballListenerClient()]
+        return [HockeyStore.getHockeyListenerClient()]
     }
 
     getPathOnRefresh () {
-        return "/basketball";
+        return "/hockey";
     }
 
     renderGuarded () {
@@ -45,24 +45,25 @@ export default class BasketballPage extends ListenerComponent<{}, BasketballPage
     }
 
     renderTable() {
-        if (!BasketballStore.instance().isLoaded()) {
+        if (!HockeyStore.instance().isLoaded()) {
             return (
                 <CircularProgress/>
             );
         }
-        let players: BasketballPlayer[] = BasketballStore.instance().getPlayers()!;
+        let players: HockeyPlayer[] = HockeyStore.instance().getPlayers()!;
         let playerData = [];
         for (let player of players) {
             playerData.push(
-              <TableRow key={player.player}>
+              <TableRow key={player.Player}>
                   <TableCell><Button variant="outlined" color="default" onClick={() => {
                       this.setState({shouldDisplayDialog: true, expandedPlayer: player,})
-                  }}>{player.player}</Button></TableCell>
-                  <TableCell>{player.tm}</TableCell>
-                  <TableCell>{player.pos}</TableCell>
-                  <TableCell>{player.tspercent}</TableCell>
-                  <TableCell>{player.per}</TableCell>
-                  <TableCell>{player.vorp}</TableCell>
+                  }}>{player.Player}</Button></TableCell>
+                  <TableCell>{player.Tm}</TableCell>
+                  <TableCell>{player.Pos}</TableCell>
+                  <TableCell>{player.GP}</TableCell>
+                  <TableCell>{player.G}</TableCell>
+                  <TableCell>{player.A}</TableCell>
+                  <TableCell>{player.PTS}</TableCell>
               </TableRow>
             )
         }
@@ -70,12 +71,13 @@ export default class BasketballPage extends ListenerComponent<{}, BasketballPage
           <Table>
               <TableHead>
                   <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Team Name</TableCell>
-                    <TableCell>Position</TableCell>
-                    <TableCell>Total Shot %</TableCell>
-                    <TableCell>Player Efficiency Rating</TableCell>
-                    <TableCell>Value over Replacement Player</TableCell>
+                      <TableCell>Name</TableCell>
+                      <TableCell>Team Name</TableCell>
+                      <TableCell>Position</TableCell>
+                      <TableCell>Games Played</TableCell>
+                      <TableCell>Goals</TableCell>
+                      <TableCell>Assists</TableCell>
+                      <TableCell>Points</TableCell>
                   </TableRow>
               </TableHead>
               <TableBody>
@@ -95,7 +97,7 @@ export default class BasketballPage extends ListenerComponent<{}, BasketballPage
         let player = this.state.expandedPlayer!;
         return (
             <React.Fragment>
-                <DialogTitle>{player.player}</DialogTitle>
+                <DialogTitle>{player.Player}</DialogTitle>
                 <DialogContent>
                     <DialogContentText>Please input a team's salary cap to display how much he should be getting payed based on his statistics.</DialogContentText>
                     <TextField placeholder='Salary Cap' value={this.salaryCap}></TextField>

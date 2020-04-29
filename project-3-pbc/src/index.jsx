@@ -4,8 +4,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import {
   Route,
-  HashRouter,
-  Redirect
+  HashRouter
 } from 'react-router-dom';
 import BaseballPage from './ui/pages/baseball_page';
 import BasketballPage from './ui/pages/basketball_page';
@@ -27,10 +26,6 @@ export const theme = createMuiTheme({
     fontSize: 15,
   }
 });
-
-function Home () {
-  return <Redirect to="/welcome"/>
-}
 
 function Main () {
   return (
