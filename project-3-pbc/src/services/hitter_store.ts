@@ -6,8 +6,8 @@ import HitterPersistence from "../persistence/hitter_persistence";
 
 
 
-export default class HitterStore extends Store { 
-    constructor () {
+export default class HitterStore extends Store<Hitter> { 
+    private constructor () {
         super (new HitterConverter());
 
         this.getPlayers = this.getPlayers.bind(this);
@@ -15,31 +15,31 @@ export default class HitterStore extends Store {
 
     static sharedInstance = new HitterStore();
 
-    static instance() {
+    public static instance() {
         return this.sharedInstance; 
     }
 
-    hitterCache = [];
+    private hitterCache?: Hitter[];
 
     getStoreSize () {
-        return this.hitterCache.length;
+        return this.hitterCache!.length;
     }
 
     isLoaded() {
         return this.hitterCache !== undefined;
     }
 
-    updateCache (players) {
+    updateCache (players: Hitter[]) {
         this.hitterCache = players;
     }
 
     getPlayers() {
-        return this.hitterCache;
+        return this.hitterCache!;
     }
 
     static getHitterListenerClient() {
-        return new ListenerClient(
-            new HitterStore(),  
+        return new ListenerClient<HitterStore>(
+            HitterStore.instance(),  
             HitterPersistence.instance().getHitterSubscriptionGenerator()
         );
     }
