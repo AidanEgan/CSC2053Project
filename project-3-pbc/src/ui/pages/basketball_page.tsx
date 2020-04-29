@@ -8,7 +8,7 @@ import BasketballPlayer from '../../model/basketball_player';
 interface BasketballPageState {
     shouldDisplayDialog: boolean,
     expandedPlayer?: BasketballPlayer,
-    salary?: number, 
+    salary?: number,
 }
 
 export default class BasketballPage extends ListenerComponent<{}, BasketballPageState>  {
@@ -16,14 +16,15 @@ export default class BasketballPage extends ListenerComponent<{}, BasketballPage
     constructor (props: {}) {
         super (props);
         this.state = {
-            salary: undefined, 
-            shouldDisplayDialog: false, 
-            expandedPlayer: undefined, 
+            salary: undefined,
+            shouldDisplayDialog: false,
+            expandedPlayer: undefined,
         };
-        this.renderTableBody = this.renderTableBody.bind(this); 
-        this.onSalaryCapUpdated = this.onSalaryCapUpdated.bind(this); 
-        this.getDialogContent = this.getDialogContent.bind(this); 
-        this.getSalary = this.getSalary.bind(this); 
+        this.renderTable = this.renderTable.bind(this);
+        this.renderTableBody = this.renderTableBody.bind(this);
+        this.onSalaryCapUpdated = this.onSalaryCapUpdated.bind(this);
+        this.getDialogContent = this.getDialogContent.bind(this);
+        this.getSalary = this.getSalary.bind(this);
     }
 
     getEmployedListenerClients () {
@@ -44,41 +45,47 @@ export default class BasketballPage extends ListenerComponent<{}, BasketballPage
                 }}>
                     {this.getDialogContent()}
                 </Dialog>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Team Name</TableCell>
-                            <TableCell>Position</TableCell>
-                            <TableCell>Total Shot %</TableCell>
-                            <TableCell>Player Efficiency Rating</TableCell>
-                            <TableCell>Value over Replacement Player</TableCell>
-                            <TableCell>Win Shares</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {this.renderTableBody()}
-                    </TableBody>
-                </Table>
+                {this.renderTable()}
             </React.Fragment>
         );
     }
 
+    renderTable(){
+      if (!BasketballStore.instance().isLoaded()) {
+          return (
+            <div style={{display: 'flex', justifyContent: 'center', margin: '5%'}}>
+              <CircularProgress/>
+            </div>
+          );
+      }
+      return(
+        <Table>
+            <TableHead>
+                <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Team Name</TableCell>
+                    <TableCell>Position</TableCell>
+                    <TableCell>Total Shot %</TableCell>
+                    <TableCell>Player Efficiency Rating</TableCell>
+                    <TableCell>Value over Replacement Player</TableCell>
+                    <TableCell>Win Shares</TableCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
+                {this.renderTableBody()}
+            </TableBody>
+        </Table>
+      );
+    }
+
     renderTableBody() {
-        if (!BasketballStore.instance().isLoaded()) {
-            return (
-              <div style={{display: 'flex', justifyContent: 'center', margin: '5%'}}>
-                <CircularProgress/>
-              </div>
-            );
-        }
-        let players: BasketballPlayer[] = BasketballStore.instance().getPlayers()!; 
+        let players: BasketballPlayer[] = BasketballStore.instance().getPlayers()!;
         return (players.map((player) => {
             return (
                 <TableRow key={player.player}>
-                    <TableCell><a onClick={() => {
+                    <TableCell><Button variant="outlined" color="default" onClick={() => {
                         this.setState({shouldDisplayDialog: true, expandedPlayer: player,})
-                    }}>{player.player}</a></TableCell>
+                    }}>{player.player}</Button></TableCell>
                     <TableCell>{player.tm}</TableCell>
                     <TableCell>{player.pos}</TableCell>
                     <TableCell>{player.tspercent}</TableCell>
@@ -90,7 +97,7 @@ export default class BasketballPage extends ListenerComponent<{}, BasketballPage
             })
         );
     }
-   
+
     onSalaryCapUpdated(event: React.ChangeEvent<HTMLInputElement>){
         let value: string = event.target.value;
         this.salaryCap = value;
@@ -99,10 +106,10 @@ export default class BasketballPage extends ListenerComponent<{}, BasketballPage
 
     getSalary () {
         if (this.state.salary === undefined) {
-            return ""; 
+            return "";
         }
         else {
-            return this.state.salary!.toLocaleString(); 
+            return this.state.salary!.toLocaleString();
         }
     }
 
