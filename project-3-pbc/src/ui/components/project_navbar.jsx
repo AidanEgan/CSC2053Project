@@ -17,24 +17,24 @@ export default class ProjectNavbar extends React.Component {
                 <Toolbar>
                     <Grid container direction="row" justify="space-around" alignItems="center">
                         <Grid item>
-                          <Link style={{"text-decoration": "none"}} to='/'>
+                          <Link style={{textDecoration: "none"}} to='/'>
                             <Button variant="contained"> About </Button>
                           </Link>
                         </Grid>
 
                         <Grid item>
-                          <Link style={{"text-decoration": "none"}} to='/basketball'>
+                          <Link style={{textDecoration: "none"}} to='/basketball'>
                             <Button variant="contained"> Basketball Page </Button>
                           </Link>
                         </Grid>
                         <Grid item>
-                          <Link style={{"text-decoration": "none"}} to='/baseball'>
+                          <Link style={{textDecoration: "none"}} to='/baseball'>
                             <Button variant="contained"> Baseball Page </Button>
                           </Link>
                         </Grid>
 
                         <Grid item>
-                          <Link style={{"text-decoration": "none"}} to='/hockey'>
+                          <Link style={{textDecoration: "none"}} to='/hockey'>
                             <Button variant="contained"> Hockey Page </Button>
                           </Link>
                         </Grid>
