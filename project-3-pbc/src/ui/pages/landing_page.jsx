@@ -83,7 +83,9 @@ export default class LandingPage extends React.Component {
                 total of 13 aPS to make the playoffs. I then use how many of these point shares a player accounts for to determine how much they should
                 be paid based on the team budget. However, this poses a problem because some players are worth more than 13 point shares, so we must account
                 for the other 19 players on the roster. To do this I subtract 19 times the minimum NHL salary from the given budget and calculate based off
-                of the resulting number.
+                of the resulting number. Disclaimer: The hockey evaluation is not accurate because it is based off of the league average player when it should be
+                based off of the value of an NHL replacement player. This will cause any player with a negative Expected +/- to have a negative contract estimate.
+                Given more time, the statistics of a replacement player could be extracted and implemented to be accurate.
                 </Typography>
             </React.Fragment>
         );
