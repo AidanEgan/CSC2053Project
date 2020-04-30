@@ -141,7 +141,7 @@ export default class HockeyPage extends ListenerComponent<{}, HockeyPageState>  
                     </Button>
                     <Button variant='contained' onClick={() => {
                       this.salaryCap = "";
-                      this.setState({shouldDisplayDialog: false, expandedPlayer: undefined});
+                      this.setState({shouldDisplayDialog: false, expandedPlayer: undefined, salary: undefined});
                     }}>
                         Close
                     </Button>
