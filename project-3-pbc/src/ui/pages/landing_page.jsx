@@ -17,7 +17,7 @@ export default class LandingPage extends React.Component {
                 <ProjectNavbar/>
                 <Typography className='paddingAround'>Description</Typography>
                 <Typography className="paddingSides">
-                    How do the spending habits of NBA teams compare to those in the NFL?
+                    How do the spending habits of NBA teams compare to those in the NHL?
                     The MLB? The salary caps in these leagues are absolutely immense; throwing
                     around hundreds of millions of dollars for one player is not uncommon in
                     these massive leagues. Although we can see the massive dollar amounts being
